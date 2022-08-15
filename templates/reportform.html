@@ -1,0 +1,39 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <h1>{% block title %} Daily Report {% endblock %}</h1>
+    <select class="form-select" id="project-select" aria-label="Choose">
+        <option selected disabled>Choose Project</option>
+        <option value="1">Project 1</option>
+        <option value="2">Project 2</option>
+        <option value="3">Project 3</option>
+      </select>
+
+      <script>
+        document.getElementById("project-select").onchange = changeListener;
+        
+        function changeListener(){
+        var value = this.value
+          console.log(value);
+          
+          if (value == "1"){
+            alert(int("1")+1)
+          }else if (value == "2"){
+            alert("2")
+          } else if (value == "3") {
+            alert("Lucky")
+          }
+          
+        }
+      
+      </script>
+
+    <form class="aform" method="post">
+        {% for question in questions %}
+            <span class="label">{{question}}</span><br>
+            <input class="fade" type="text" name="answer1" value="{{ request.form.get('answer1', '') }}" placeholder="Answer">
+            <br>
+        {% endfor %}
+        <button type="submit" class="btn btn-outline-secondary">Submit</button>
+    </form>
+{% endblock %}

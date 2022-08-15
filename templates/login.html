@@ -1,0 +1,12 @@
+{% extends 'layout.html' %}
+
+{% block title %} Daily Report Login {% endblock %}
+
+{% block content %}
+    <form class="aform" method="post">
+        <input class="fade" type="text" name="name" value="{{ request.form.get('name', '') }}" placeholder="First Name">
+        <input class="fade" type="text" name="email" value="{{ request.form.get('email', '') }}" placeholder="School Email">
+        <br>
+        <button type="submit" class="btn btn-outline-secondary">Login</button>
+    </form>
+{% endblock %}
