@@ -2,6 +2,7 @@ from flask import *
 import base64
 import datetime
 import random
+import os
 
 import sqlite3
 
@@ -12,6 +13,13 @@ def sqlexec(query):
     c.execute(query)
 
 app = Flask(__name__)
+
+allowedcharacters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P']
+def checkallowedcharacters(username):
+    for character in username:
+        if not character in allowedcharacters:
+            return False
+    return True
 
 configs = []
 tokens = []
@@ -25,13 +33,16 @@ def login():
     if request.method == 'POST':
         username = request.form("email")
         userid = -1
-        if ('@' in username and '.' in username:
+        if '@' in username and '.' in username:
             userid = c.execute("SELECT user_id FROM users WHERE email = ?", username)
-        elif (checkallowedcharacters(username):
-            print("YAY!")
+        elif checkallowedcharacters(username):
+            token = os.urandom(20)
+            while tokens[token] != 0:
+                
+            return redirect("feed.html")
         else:
-            print("NAY!")
-        return resp
+            flash
+        return render_template('login.html')
     else:
         return render_template('login.html')
 
