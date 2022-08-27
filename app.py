@@ -9,7 +9,6 @@ import waitress
 app = Flask(__name__)
 
 configs = []
-tokens = []
 
 @app.route('/')
 def index():
